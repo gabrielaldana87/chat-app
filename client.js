@@ -167,6 +167,7 @@ ws.addEventListener("message",function(evt){
     usercontent["lines"] = input.value;
     var messagecontent = JSON.stringify(usercontent);
     ws.send(messagecontent);
+    //alert(idmessage);
     //addText("- "+input.value);
     input.value="";
     var lis=document.querySelectorAll("li");
