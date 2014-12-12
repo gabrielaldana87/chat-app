@@ -125,7 +125,7 @@ button.addEventListener("click",function(evt){
 })
 */
 var colorpos = ["first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth"];
-var ws = new WebSocket("ws://gabriel.princesspeach.nyc:8080");
+var ws = new WebSocket("ws://gabriel.princesspeach.nyc:8080/github/chat/chat-app/client.html");
 var ul = document.createElement("ul");
 var body = document.querySelector("body");
 var input = document.createElement("input");
