@@ -15,18 +15,67 @@ body{
   background-color: #DC143C;
 }
 
-.terminal {
+.fuckthis {
   list-style:none;
-  color:blue;
+  color:red;
   font-family:Calibri;
     }
 
 .user{
   list-style:none;
-  color:white;
+  color:orange;
   font-family:Calibri;
 }
 
-button{
+.first {
+  list-style:none;
+  color:orange;
+  font-family:Calibri;
+}
 
+.second {
+  list-style:none;
+  color:pink;
+  font-family:Calibri;
+}
+.third {
+  list-style:none;
+  color:#66CD00;
+  font-family:Calibri;
+}
+
+.fourth {
+  list-style:none;
+  color:#FF83FA;
+  font-family:Calibri;
+}
+.fifth {
+  list-style:none;
+  color:#FF8C00;
+  font-family:Calibri;
+}
+.sixth {
+  list-style:none;
+  color:#20B2AA;
+  font-family:Calibri;
+}
+.seventh {
+  list-style:none;
+  color:#912CEE;
+  font-family:Calibri;
+}
+.eighth {
+  list-style:none;
+  color:#EE82EE;
+  font-family:Calibri;
+}
+.ninth {
+  list-style:none;
+  color:#20B2AA;
+  font-family:Calibri;
+}
+.tenth {
+  list-style:none;
+  color:#0000CD;
+  font-family:Calibri;
 }
