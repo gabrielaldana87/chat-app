@@ -124,7 +124,8 @@ button.addEventListener("click",function(evt){
     }
 })
 */
-var ws = new WebSocket("ws://localhost:3000");
+var colorpos = ["first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth"];
+var ws = new WebSocket("ws://gabriel.princesspeach.nyc:8080");
 var ul = document.createElement("ul");
 var body = document.querySelector("body");
 var input = document.createElement("input");
@@ -136,6 +137,8 @@ var button = document.createElement("button");
 div.appendChild(button);
 button.innerText="Submit";
 body.appendChild(ul);
+var div2=document.createElement("div");
+body.appendChild(div2)
 
 var name = window.prompt("What is your name?").trim();
 
@@ -145,34 +148,26 @@ var addText = function(msg)
   newLi.innerText=msg;
   var FirstLi = ul.firstChild;
   ul.insertBefore(newLi,FirstLi);
+
 }
 ws.addEventListener("open",function(evt)
 {
   addText('connected');
-
 });
+
 
 ws.addEventListener("message",function(evt){
   addText(evt.data);
-
+  var usercontent = JSON.parse(evt.data);
   var lit = document.querySelectorAll("li");
-  for (i=0;i<lit.length;i++)
-    {
-      lit[i].className="terminal";
-    }
+      ul.className=colorpos[usercontent.position];
   });
 
-  button.addEventListener("click",function(evt){
+button.addEventListener("click",function(evt){
     var usercontent = {name:name};
     usercontent["lines"] = input.value;
     var messagecontent = JSON.stringify(usercontent);
     ws.send(messagecontent);
-    //alert(idmessage);
-    //addText("- "+input.value);
     input.value="";
     var lis=document.querySelectorAll("li");
-    for (i=0;i<lis.length;i++)
-      {
-        lis[i].className="user";
-      }
     })
