@@ -125,7 +125,7 @@ button.addEventListener("click",function(evt){
 })
 */
 var colorpos = ["first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth"];
-var ws = new WebSocket("ws://gabriel.princesspeach.nyc:3000");
+var ws = new WebSocket("ws://localhost:3000");//ws://gabriel.princesspeach.nyc:3000
 var ul = document.createElement("ul");
 var body = document.querySelector("body");
 var input = document.createElement("input");
@@ -141,6 +141,7 @@ var div2=document.createElement("div");
 body.appendChild(div2)
 
 var name = window.prompt("What is your name?").trim();
+var usercontent = {name:name};
 
 var addText = function(msg)
 {
@@ -160,14 +161,37 @@ ws.addEventListener("message",function(evt){
   addText(evt.data);
   var usercontent = JSON.parse(evt.data);
   var lit = document.querySelectorAll("li");
-      ul.className=colorpos[usercontent.position];
-  });
+  ul.className=colorpos[usercontent.position];
+});
 
 button.addEventListener("click",function(evt){
-    var usercontent = {name:name};
-    usercontent["lines"] = input.value;
-    var messagecontent = JSON.stringify(usercontent);
-    ws.send(messagecontent);
-    input.value="";
-    var lis=document.querySelectorAll("li");
+
+  usercontent["lines"] = input.value;
+  var messagecontent = JSON.stringify(usercontent);
+  ws.send(messagecontent);
+  input.value="";
+  var lis=document.querySelectorAll("li");
+})
+
+var clear = function()
+{input.value=""}
+
+input.addEventListener("keydown",function(evt){
+if(evt.keyCode===13)
+    {
+      usercontent["lines"] = input.value;
+      var messagecontent = JSON.stringify(usercontent);
+      ws.send(messagecontent);
+      var lis=document.querySelectorAll("li");
+      addText(input.value);
+      //input.value="";
+      clear();
+    }
+    })
+input.addEventListener("keyup",function()
+    {
+      var lick = document.createElement("li");
+      var FirstLi = ul.firstChild;
+      FirstLi.innerText=name+": "+input.value;
+      FirstLi.id="test";
     })
