@@ -96,8 +96,6 @@ server.on("connection", function(ws){
   })
 })
 */
-
-
 var Websocket = require("ws").Server;
 var server = new Websocket({port:3000});
 var clients = [];
@@ -123,10 +121,10 @@ server.on("connection", function(ws){
     //usercontent["position"]=y;
     for (i=0;i<clients.length;i++)
       {
-        //  if(i!=y)
-        //    {
+        if(i!=y)
+            {
         clients[i].send(usercontent.name+": "+usercontent.lines);//check this line
-        //      }
+            }
       }
     })
     var historymsg=history.join("\n");
