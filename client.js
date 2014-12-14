@@ -130,7 +130,6 @@ var ul = document.createElement("ul");
 var body = document.querySelector("body");
 var input = document.createElement("input");
 var div = document.createElement("div");
-body.appendChild(input);
 body.appendChild(div);
 div.appendChild(input);
 var button = document.createElement("button");
@@ -142,6 +141,7 @@ body.appendChild(div2)
 
 var name = window.prompt("What is your name?").trim();
 var usercontent = {name:name};
+
 
 var addText = function(msg)
 {
@@ -161,7 +161,7 @@ ws.addEventListener("message",function(evt){
   addText(evt.data);
   var usercontent = JSON.parse(evt.data);
   var lit = document.querySelectorAll("li");
-  ul.className=colorpos[usercontent.position];
+  ul.className="first";
 });
 
 button.addEventListener("click",function(evt){
@@ -177,21 +177,50 @@ var clear = function()
 {input.value=""}
 
 input.addEventListener("keydown",function(evt){
-if(evt.keyCode===13)
+  if(evt.keyCode===13)
     {
-      usercontent["lines"] = input.value;
-      var messagecontent = JSON.stringify(usercontent);
-      ws.send(messagecontent);
-      var lis=document.querySelectorAll("li");
-      addText(input.value);
-      //input.value="";
-      clear();
+        var wordfilter=input.value;
+        var filter = wordfilter.split(" ");
+
+    for(i=0;i<=filter.length;i++)
+        {
+        if(filter[i]==="fuck"||filter[i]==="shit"||filter[i]==="fag"||filter[i]==="faggot"||filter[i]==="bitch")
+          {
+            addText("that word is banned!");
+            clear();
+          }
+        else if(input.value!=="")
+          {
+            usercontent["lines"] = wordfilter;
+            var messagecontent = JSON.stringify(usercontent);
+            ws.send(messagecontent);
+            var lis=document.querySelectorAll("li");
+            addText(name+": "+input.value);
+            //input.value="";
+            clear();
+          }
+        }
     }
-    })
+  })
+
 input.addEventListener("keyup",function()
-    {
-      var lick = document.createElement("li");
-      var FirstLi = ul.firstChild;
-      FirstLi.innerText=name+": "+input.value;
-      FirstLi.id="test";
-    })
+{
+  var lick = document.createElement("li");
+  var FirstLi = ul.firstChild;
+  var wordfilter=input.value;
+  var filter = wordfilter.split(" ");
+
+    for(i=0;i<=filter.length;i++)
+      {
+        if(filter[i]==="fuck"||filter[i]==="shit"||filter[i]==="fag"||filter[i]==="faggot"||filter[i]==="bitch")
+          {
+            FirstLi.innerText="That word is banned!";
+            clear();
+          }
+        else if(input.value!=="")
+          {
+            FirstLi.innerText=name+": "+wordfilter;
+            FirstLi.id="test";
+          }
+}
+  })
