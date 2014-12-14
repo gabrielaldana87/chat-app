@@ -111,7 +111,10 @@ server.on("connection", function(ws){
   {
     client.send("Client connected!");
     counter += 1;
+    var historymsg=history.join("\n");
+    ws.send(historymsg);
   })
+
   console.log(clients.length+" clients are in the room");
   ws.on("message",function(message)
   {
@@ -127,8 +130,7 @@ server.on("connection", function(ws){
             }
       }
     })
-    var historymsg=history.join("\n");
-    ws.send(historymsg);
+
 
     ws.on("close",function()
     {
