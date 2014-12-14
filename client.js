@@ -181,25 +181,36 @@ input.addEventListener("keydown",function(evt){
     {
         var wordfilter=input.value;
         var filter = wordfilter.split(" ");
+        var commands=input.value;
+        var transform=commands.split("/ ")
 
-    for(i=0;i<=filter.length;i++)
-        {
-        if(filter[i]==="fuck"||filter[i]==="shit"||filter[i]==="fag"||filter[i]==="faggot"||filter[i]==="bitch")
+filter.forEach(function(strings)
+{ if(strings==="fuck")
+  {
+    addText("that word is banned!");
+    clear();
+  }
+  else if(input.value!=="" && transform[0]!=="yell")
+    {
+      usercontent["lines"] = wordfilter;
+      var messagecontent = JSON.stringify(usercontent);
+      ws.send(messagecontent);
+      var lis=document.querySelectorAll("li");
+      addText(name+": "+input.value);
+      //input.value="";
+      clear();
+    }
+})
+        if(transform[0]==="yell")
           {
-            addText("that word is banned!");
-            clear();
-          }
-        else if(input.value!=="")
-          {
-            usercontent["lines"] = wordfilter;
+            usercontent["lines"]=transform[1].toUpperCase();
             var messagecontent = JSON.stringify(usercontent);
-            ws.send(messagecontent);
-            var lis=document.querySelectorAll("li");
-            addText(name+": "+input.value);
-            //input.value="";
+            console.log(messagecontent);
+          ws.send(messagecontent);
+          addText(name+": "+transform[1].toUpperCase())
             clear();
-          }
-        }
+         }
+
     }
   })
 
@@ -210,6 +221,9 @@ input.addEventListener("keyup",function()
   var wordfilter=input.value;
   var filter = wordfilter.split(" ");
 
+  var commands=input.value;
+  var transform=commands.split("/ ")
+
     for(i=0;i<=filter.length;i++)
       {
         if(filter[i]==="fuck"||filter[i]==="shit"||filter[i]==="fag"||filter[i]==="faggot"||filter[i]==="bitch")
@@ -217,9 +231,14 @@ input.addEventListener("keyup",function()
             FirstLi.innerText="That word is banned!";
             clear();
           }
-        else if(input.value!=="")
+        else if(input.value!=="" && transform[0]==="yell")
           {
-            FirstLi.innerText=name+": "+wordfilter;
+            FirstLi.innerText=name+": "+input.value;
+            FirstLi.id="test";
+          }
+        else if(transform[0]==="yell")
+          {
+            FirstLi.innerText=name+": "+transform[1].toUpperCase();
             FirstLi.id="test";
           }
 }
