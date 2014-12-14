@@ -1,95 +1,63 @@
-div{
-  height: 20px;
+#messagebox{
+  height: 50px;
   width: 400px;
   background: rgba(255,255,255,0.9);
   margin-left: 20px;
-  margin-top: 15px;
+  margin-top: 20px;
   margin-right: 20px;
-  margin-bottom: 15px;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 body{
-  background-color: #DC143C;
+  background-color: #104E8B;
+}
+
+div{
+  float: left;
+  position: fixed;
 }
 
 ul{
-  list-style:none;
-  color:red;
-  width:400px;
+  float: left;
+  clear: right;
+  margin-left: 400px;
+  margin-right: 50px;
+}
+
+
+button{
   font-family:Calibri;
-  margin-top: 5px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-right: 0px;
-  margin-left: 20px;
-  margin-bottom: 5px;
-  background-color: #104E8B;
-    }
+  color: red;
+  padding: 5px 5px 5px 5px;
+  font-weight: bold;
+  margin: 5px 10px 10px 10px;
+  font-size: 15px;
+  width: 65px;
+}
+
+input{
+  padding: 5px 5px 5px 5px;
+  margin: 10px 0px 10px 10px;
+  width: 305px;
+}
 
 #test{
   list-style:none;
-  color:#20B2AA;
+  color:white;
   font-family:Calibri;
+  border: 1px solid;
+  background-color: crimson;
+  padding-right: 5px;
 }
 
 .first {
   list-style:none;
-  color:orange;
+  color:white;
   font-family:Calibri;
 }
 
-.second {
-  list-style:none;
-  color:pink;
-  font-family:Calibri;
-}
-.third {
-  list-style:none;
-  color:#66CD00;
-  font-family:Calibri;
-}
 
-.fourth {
-  list-style:none;
-  color:#FF83FA;
-  font-family:Calibri;
-}
-.fifth {
-  list-style:none;
-  color:#FF8C00;
-  font-family:Calibri;
-}
-.sixth {
-  list-style:none;
-  color:#20B2AA;
-  font-family:Calibri;
-}
-.seventh {
-  list-style:none;
-  color:#912CEE;
-  font-family:Calibri;
-}
-.eighth {
-  list-style:none;
-  color:#EE82EE;
-  font-family:Calibri;
-}
-.ninth {
-  list-style:none;
-  color:#20B2AA;
-  font-family:Calibri;
-}
-.tenth {
-  list-style:none;
-  color:#0000CD;
-  font-family:Calibri;
-}
-
-li{
+boo{
   background: #DC143C;
   height: 20px;
   width: 400px;
@@ -101,4 +69,6 @@ li{
   padding-left: 2px;
   padding-right: 2px;
   padding-bottom: 2px;
+  border: solid 2px;
+
 }
