@@ -37,26 +37,69 @@ button{
 
 input{
   padding: 5px 5px 5px 5px;
-  margin: 10px 0px 10px 10px;
+  margin: 150px 0px 10px 10px;
   width: 305px;
 }
 
 #test{
   list-style:none;
-  color:white;
+  color:#99C2FF;
   font-family:Calibri;
-  border: 1px solid;
-  background-color: crimson;
   padding-right: 5px;
 }
 
 .first {
   list-style:none;
-  color:white;
+  color:orange;
   font-family:Calibri;
 }
 
+.second {
+  list-style:none;
+  color:pink;
+  font-family:Calibri;
+}
+.third {
+  list-style:none;
+  color:#66CD00;
+  font-family:Calibri;
+}
 
+.fourth {
+  list-style:none;
+  color:#FF83FA;
+  font-family:Calibri;
+}
+.fifth {
+  list-style:none;
+  color:#FF8C00;
+  font-family:Calibri;
+}
+.sixth {
+  list-style:none;
+  color:#20B2AA;
+  font-family:Calibri;
+}
+.seventh {
+  list-style:none;
+  color:#912CEE;
+  font-family:Calibri;
+}
+.eighth {
+  list-style:none;
+  color:#EE82EE;
+  font-family:Calibri;
+}
+.ninth {
+  list-style:none;
+  color:#20B2AA;
+  font-family:Calibri;
+}
+.tenth {
+  list-style:none;
+  color:#0000CD;
+  font-family:Calibri;
+}
 boo{
   background: #DC143C;
   height: 20px;
@@ -81,8 +124,19 @@ img{
 
 #images{
   background-color: orange;
-  margin-top: 60px;
+  margin-top: 200px;
   width: 385px;
   margin-right: 100px;
   margin-left: 10px;
+}
+
+h1{
+  font-family: Calibri;
+  color: white;
+  width: 385px;
+  margin-top: 10px;
+  margin-left: 10px;
+  text-align: text-top;
+  position: fixed;
+  text-shadow: 5px 5px 2px crimson;
 }
