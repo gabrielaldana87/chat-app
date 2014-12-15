@@ -162,7 +162,7 @@ ws.addEventListener("message",function(evt){
   var string = "";
   var string = evt.data;
   var imglength = string.substring(string.length,string.length-3);
-  if(imglength==="jpg")
+  if(imglength==="jpg" || imglength==="gif"|| imglength==="png" || imglength==="bmp")
     {
     var imagehold = string.split(": ")
     var img = document.createElement("img");
@@ -177,7 +177,11 @@ ws.addEventListener("message",function(evt){
   var usercontent = JSON.parse(evt.data);
   //addText(evt.data);
   var lit = document.querySelectorAll("li");
-  ul.className="first";
+  ul.className=colorpos[usercontent.position];
+  var header = document.createElement("h1");
+  body.appendChild(header);
+  header.innerText="Hi "+name+". Welcome to SimpleChat!\nYou are # "+usercontent.position+" in line";
+
     }
 });
 
@@ -203,14 +207,15 @@ input.addEventListener("keydown",function(evt){
         var string = "";
         var string = input.value;
         var imglength = string.substring(string.length,string.length-3);
+        //var wordbegin = string.charAt(0)+string.charAt(1)+string.charAt(2)+string.charAt(3);
 
 filter.forEach(function(strings)
 { if(strings==="fuck")
-  {
+    {
     addText("that word is banned!");
     clear();
-  }
-  else if(input.value!=="" && transform[0]!=="yell")
+    }
+/*  else if(input.value!=="" && transform[0]!=="yell" && wordbegin!=="http" && wordbegin!=="www.")
     {
       usercontent["lines"] = wordfilter;
       var messagecontent = JSON.stringify(usercontent);
@@ -220,6 +225,17 @@ filter.forEach(function(strings)
       //input.value="";
       clear();
     }
+*/
+    else if(input.value!=="" && transform[0]!=="yell")
+      {
+        usercontent["lines"] = wordfilter;
+        var messagecontent = JSON.stringify(usercontent);
+        ws.send(messagecontent);
+        var lis=document.querySelectorAll("li");
+        addText(name+": "+input.value);
+        //input.value="";
+        clear();
+      }
 })
         if(transform[0]==="yell")
           {
@@ -239,7 +255,7 @@ filter.forEach(function(strings)
             addText(name+": "+"(╯°□°）╯︵ ┻━┻")
             clear();
           }
-        else if(imglength==="jpg")
+        else if(imglength==="jpg" || imglength==="gif"|| imglength==="png" || imglength==="bmp")
           {
             var img = document.createElement("img");
             div2.appendChild(img);
@@ -257,7 +273,10 @@ input.addEventListener("keyup",function()
   var filter = wordfilter.split(" ");
 
   var commands=input.value;
-  var transform=commands.split("/ ")
+  var transform=commands.split("/ ");
+  var string = "";
+  var string = input.value;
+  var wordbegin = string.charAt(0)+string.charAt(1)+string.charAt(2)+string.charAt(3);
 
     for(i=0;i<=filter.length;i++)
       {
@@ -266,7 +285,7 @@ input.addEventListener("keyup",function()
             FirstLi.innerText="That word is banned!";
             clear();
           }
-        else if(input.value!=="" && transform[0]!=="yell" && transform[0]!=="table flip")
+        else if(input.value!=="" && transform[0]!=="yell" && transform[0]!=="table flip" && wordbegin!=="www." && wordbegin!=="http")
           {
             FirstLi.innerText=name+": "+input.value;
             FirstLi.id="test";
@@ -283,6 +302,5 @@ input.addEventListener("keyup",function()
             FirstLi.innerText=name+": "+"(╯°□°）╯︵ ┻━┻";
             FirstLi.id="test";
           }
-
 }
   })
