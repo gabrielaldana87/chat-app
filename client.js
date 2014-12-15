@@ -159,10 +159,26 @@ ws.addEventListener("open",function(evt)
 
 
 ws.addEventListener("message",function(evt){
+  var string = "";
+  var string = evt.data;
+  var imglength = string.substring(string.length,string.length-3);
+  if(imglength==="jpg")
+    {
+    var imagehold = string.split(": ")
+    var img = document.createElement("img");
+    div2.appendChild(img);
+    img.src=imagehold[1];
+    img.height="100";
+    }
+
+  else
+    {
   addText(evt.data);
   var usercontent = JSON.parse(evt.data);
+  //addText(evt.data);
   var lit = document.querySelectorAll("li");
   ul.className="first";
+    }
 });
 
 button.addEventListener("click",function(evt){
