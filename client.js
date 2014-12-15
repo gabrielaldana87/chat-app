@@ -137,7 +137,8 @@ div.appendChild(button);
 button.innerText="Submit";
 body.appendChild(ul);
 var div2=document.createElement("div");
-body.appendChild(div2)
+body.appendChild(div2);
+div2.id="images";
 
 var name = window.prompt("What is your name?").trim();
 var usercontent = {name:name};
@@ -182,7 +183,10 @@ input.addEventListener("keydown",function(evt){
         var wordfilter=input.value;
         var filter = wordfilter.split(" ");
         var commands=input.value;
-        var transform=commands.split("/ ")
+        var transform=commands.split("/ ");
+        var string = "";
+        var string = input.value;
+        var imglength = string.substring(string.length,string.length-3);
 
 filter.forEach(function(strings)
 { if(strings==="fuck")
@@ -210,7 +214,22 @@ filter.forEach(function(strings)
           addText(name+": "+transform[1].toUpperCase())
             clear();
          }
-
+        else if(transform[0]==="table flip")
+          {
+            usercontent["lines"]="(╯°□°）╯︵ ┻━┻";
+            var messagecontent = JSON.stringify(usercontent);
+            console.log(messagecontent);
+            ws.send(messagecontent);
+            addText(name+": "+"(╯°□°）╯︵ ┻━┻")
+            clear();
+          }
+        else if(imglength==="jpg")
+          {
+            var img = document.createElement("img");
+            div2.appendChild(img);
+            img.src=string;
+            img.height="100";
+          }
     }
   })
 
@@ -231,7 +250,7 @@ input.addEventListener("keyup",function()
             FirstLi.innerText="That word is banned!";
             clear();
           }
-        else if(input.value!=="" && transform[0]==="yell")
+        else if(input.value!=="" && transform[0]!=="yell" && transform[0]!=="table flip")
           {
             FirstLi.innerText=name+": "+input.value;
             FirstLi.id="test";
@@ -241,5 +260,13 @@ input.addEventListener("keyup",function()
             FirstLi.innerText=name+": "+transform[1].toUpperCase();
             FirstLi.id="test";
           }
+        else if(transform[0]==="table flip")
+          {
+            var pre = document.createElement("pre");
+            FirstLi.appendChild(pre);
+            FirstLi.innerText=name+": "+"(╯°□°）╯︵ ┻━┻";
+            FirstLi.id="test";
+          }
+
 }
   })
