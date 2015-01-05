@@ -9,36 +9,70 @@
 }
 
 body{
-  background-color: #104E8B;
+  background-color: lightslategrey;
 }
 
 div{
   float: left;
   position: fixed;
+  display:block;
 }
 
-ul{
-  float: left;
-  clear: right;
-  margin-left: 400px;
-  margin-right: 50px;
+ul {
+    float: left;
+    clear: right;
+    margin-left: 450px;
+    margin-right: 50px;
+    border: white solid 10px;
+    border-radius: 40px;
+    background: -moz-linear-gradient(top, rgba(32,89,202,1) 0%, rgba(42,44,216,1) 50%, rgba(30,63,154,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(32,89,202,1)), color-stop(50%,rgba(42,103,216,1)), color-stop(100%,rgba(30,63,154,1)));
+    background: -webkit-linear-gradient(top, rgba(32,89,202,1) 0%,rgba(42,44,216,1) 50%,rgba(30,63,154,1) 100%);
+    background: -ms-linear-gradient(top, rgba(32,89,202,1) 0%,rgba(42,44,216,1) 50%,rgba(30,63,154,1) 100%);
+    background: linear-gradient(to bottom, rgba(32,89,202,1) 0%,rgba(42,44,216,1) 50%,rgba(30,44,154,1) 100%);
+    margin-top: 240px;
+    padding: 20px 20px 20px 20px;
 }
 
 
-button{
-  font-family:Calibri;
-  color: red;
+button {
+  font-family: Calibri;
+  color: white;
   padding: 5px 5px 5px 5px;
   font-weight: bold;
-  margin: 5px 10px 10px 10px;
-  font-size: 15px;
-  width: 65px;
+  margin: 0px 10px 10px 25px;
+  font-size: 20px;
+  width: 120px;
+  height: 60px;
+  background-color: rgb(73, 89, 202);
+  border-bottom-left-radius: 2px;
+  border-bottom: 10px orange solid;
+  border-right: 10px solid darkorange;
+  border-top: 0px;
+  border-top-left-radius: 40px;
+  border-left: 0px;
+  height: 55px;
+  border-bottom-right-radius: 40px;
+  background: rgb(202,32,58);
+  background: -moz-linear-gradient(top, rgba(202,32,58,1) 0%, rgba(216,42,71,1) 50%, rgba(154,30,40,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(202,32,58,1)), color-stop(50%,rgba(216,42,71,1)), color-stop(100%,rgba(154,30,40,1)));
+  background: -webkit-linear-gradient(top, rgba(202,32,58,1) 0%,rgba(216,42,71,1) 50%,rgba(154,30,40,1) 100%);
+  background: -o-linear-gradient(top, rgba(202,32,58,1) 0%,rgba(216,42,71,1) 50%,rgba(154,30,40,1) 100%);
+  background: -ms-linear-gradient(top, rgba(202,32,58,1) 0%,rgba(216,42,71,1) 50%,rgba(154,30,40,1) 100%);
+  background: linear-gradient(to bottom, rgba(202,32,58,1) 0%,rgba(216,42,71,1) 50%,rgba(154,30,40,1) 100%);
 }
 
 input{
   padding: 5px 5px 5px 5px;
-  margin: 150px 0px 10px 10px;
-  width: 305px;
+  margin: 150px 0px 0px 20px;
+  width: 400px;
+  border-radius: 40px;
+  height: 55px;
+  border-bottom: 10px orange solid;
+  border-top-right-radius: 0px;
+  border-right: darkorange solid 10px;
+  border-top: 10px solid white;
+  border-bottom-left-radius: 0px;
 }
 
 #test{
@@ -115,28 +149,80 @@ boo{
   border: solid 2px;
 }
 
-img{
-  margin-top: 20px;
-  height:100px;
+img {
+  margin-top: 40px;
+  height: 140px;
   margin-right: 700px;
-  margin-left: 20px;
+  margin-left: 50px;
+  margin-bottom: 40px;
+  border: 10px solid white;
+  border-radius: 40px;
 }
 
-#images{
-  background-color: orange;
-  margin-top: 200px;
+#images {
+  margin-top: 240px;
   width: 385px;
   margin-right: 100px;
-  margin-left: 10px;
+  margin-left: 20px;
+  border-radius: 40px;
+  border: solid white 10px;
+  background: rgb(202,32,58);
+  background: -moz-linear-gradient(top, rgba(202,32,58,1) 0%, rgba(216,42,71,1) 50%, rgba(154,30,40,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(202,32,58,1)), color-stop(50%,rgba(216,42,71,1)), color-stop(100%,rgba(154,30,40,1)));
+  background: -webkit-linear-gradient(top, rgba(202,32,58,1) 0%,rgba(216,42,71,1) 50%,rgba(154,30,40,1) 100%);
+  background: -o-linear-gradient(top, rgba(202,32,58,1) 0%,rgba(216,42,71,1) 50%,rgba(154,30,40,1) 100%);
+  background: -ms-linear-gradient(top, rgba(202,32,58,1) 0%,rgba(216,42,71,1) 50%,rgba(154,30,40,1) 100%);
+  background: linear-gradient(to bottom, rgba(202,32,58,1) 0%,rgba(216,42,71,1) 50%,rgba(154,30,40,1) 100%);
 }
 
-h1{
-  font-family: Calibri;
+h1 {
+  font-family: Muli;
   color: white;
   width: 385px;
-  margin-top: 10px;
-  margin-left: 10px;
+  /* margin-top: -10px; */
+  /* margin-left: -10px; */
   text-align: text-top;
   position: fixed;
-  text-shadow: 5px 5px 2px crimson;
+  /* background: #222222; */
+  /* border-bottom: 20px solid rgb(55, 53, 53); */
+  width: 75%;
+  padding: 10px;
+  margin: 0px;
+}
+
+#headerdiv{
+  position: absolute;
+  width: 100%;
+  height: 15%;
+  background: background: -moz-linear-gradient(top, rgba(32,89,202,1) 0%, rgba(42,44,216,1) 50%, rgba(30,63,154,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(32,89,202,1)), color-stop(50%,rgba(42,103,216,1)), color-stop(100%,rgba(30,63,154,1)));
+  background: -webkit-linear-gradient(top, rgba(32,89,202,1) 0%,rgba(42,44,216,1) 50%,rgba(30,63,154,1) 100%);
+  background: -ms-linear-gradient(top, rgba(32,89,202,1) 0%,rgba(42,44,216,1) 50%,rgba(30,63,154,1) 100%);
+  background: linear-gradient(to bottom, rgba(32,89,202,1) 0%,rgba(42,44,216,1) 50%,rgba(30,44,154,1) 100%);
+  margin: -6;
+  border-bottom: 10px solid orange;
+}
+
+#headerimg{
+  position: relative;
+  /* width: 10%; */
+  height: 100px;
+  margin-right: 0%;
+  float: right;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  border: none;
+  position: absolute;
+  margin-left: 500px;
+}
+
+#UsersList{
+  width:10%;
+  font-family: Calibri;
+  list-style:none;
+  color:#99C2FF;
+  float:right;
+  margin-left: 700px;
+  margin-top: 130px;
+
 }
