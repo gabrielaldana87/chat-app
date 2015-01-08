@@ -42,14 +42,17 @@ server.on("connection", function(ws)
         {
           history.push(usercontent.name+": "+usercontent.lines);
           console.log(usercontent.name+": "+usercontent.lines);
-          usercontent["type"] = "clientmsg";
+
           for (i=0;i<clients.length;i++)
               {
-                if(i!=y)
-                  {
-                    clients[i].send(usercontent.name+": "+usercontent.lines);//check this line
-                  }
+                usercontent["type"] = "clientmsg";
+                 if(i!=y)
+                   {
+                    //clients[i].send(usercontent.name+": "+usercontent.lines);//check this line
+                    ws.send(JSON.stringify(usercontent))
+                   }
                 }
+              console.log(usercontent);
         };
       })
 

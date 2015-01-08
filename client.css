@@ -16,6 +16,7 @@ div{
   float: left;
   position: fixed;
   display:block;
+  height:0px;
 }
 
 ul {
