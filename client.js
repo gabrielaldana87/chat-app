@@ -1,6 +1,6 @@
 
 var colorpos = ["first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth"];
-var ws = new WebSocket("ws://104.236.29.96:2000");//ws://gabriel.princesspeach.nyc:3000
+var ws = new WebSocket("ws://localhost:2000");//ws://gabriel.princesspeach.nyc:3000//ws://104.236.29.96:2000"
 var ul = document.createElement("ul");
 var body = document.querySelector("body");
 var input = document.createElement("input");
@@ -47,7 +47,6 @@ var addUsers = function(msg)
   var newLi2 = document.createElement("li");
   ul2.appendChild(newLi2);
   newLi2.innerText=msg;
-
 }
 
 ws.addEventListener("open",function(evt)
@@ -64,9 +63,48 @@ ws.addEventListener("message",function(evt)
 {
   var usercontent = JSON.parse(evt.data);
   console.log(usercontent);
-  if(usercontent.type==="clientmsg")
+
+  if(usercontent.type==="servermsg")
     {
       console.log(usercontent);
+
+      for(i=0;i<usercontent.usersList.length;i++)
+        {
+          addUsers(usercontent.usersList[i]);
+        }
+
+        var lit = document.querySelectorAll("li");
+        ul.className=colorpos[usercontent.position];
+        var header = document.createElement("h1");
+        var div3 = document.createElement("div");
+        body.appendChild(div3);
+        div3.appendChild(header);
+        var imgheader = document.createElement("img");
+        div3.appendChild(imgheader);
+        imgheader.src="http://www.gamesprays.com/images/icons/cheshire-cat-2-3118_preview.png";
+        imgheader.height="50px";
+        header.innerText="Hi "+name+". Welcome to SimpleChat!\nYou are # "+usercontent.position+" in line";
+        div3.id="headerdiv";
+        imgheader.id="headerimg";
+    }
+
+  if(usercontent["type"]==="clientmsg")
+    {
+      console.log("hello");
+      var history = [];
+      history.push(usercontent.history);
+      console.log(history);
+      addText(usercontent.name+": "+usercontent.lines);
+      // var ul = document.querySelector("ul");
+    //  for (i=0;i<history.length;i++)
+    //    {
+      // var li = document.createElement("li");
+      // ul.appendChild(li);
+      // li.innerText=usercontent.name+": "+usercontent.lines;
+    //    }
+      //var join = split.join('\n');
+
+
        //var string = "";
        //var string = usercontent.lines;
        //var imglength = string.substring(string.length,string.length-3);
@@ -93,35 +131,14 @@ ws.addEventListener("message",function(evt)
       //
       //   else
       //     {
-            addText(usercontent.name+": "+usercontent.lines);
+            // addText(usercontent.name+": "+usercontent.lines);
           //}
     }
-        var lit = document.querySelectorAll("li");
-        ul.className=colorpos[usercontent.position];
-        var header = document.createElement("h1");
-        var div3 = document.createElement("div");
-        body.appendChild(div3);
-        div3.appendChild(header);
-        var imgheader = document.createElement("img");
-        div3.appendChild(imgheader);
-        imgheader.src="http://www.gamesprays.com/images/icons/cheshire-cat-2-3118_preview.png";
-        imgheader.height="50px";
-        header.innerText="Hi "+name+". Welcome to SimpleChat!\nYou are # "+usercontent.position+" in line";
-        div3.id="headerdiv";
-        imgheader.id="headerimg";
 
-        if(usercontent.type==="servermsg")
-          {
-            console.log(usercontent);
 
-            for(i=0;i<usercontent.usersList.length;i++)
-              {
-                addUsers(usercontent.usersList[i]);
-                console.log(usercontent.usersList[i]);
-              }
-            }
 
-          });
+
+});
 
           button.addEventListener("click",function(evt){
 
@@ -164,7 +181,6 @@ ws.addEventListener("message",function(evt)
                     usercontent["lines"] = wordfilter;
                     usercontent["type"] = "usermessage";
                     var messagecontent = JSON.stringify(usercontent);
-                    //console.log(messagecontent);
                     ws.send(messagecontent);
                     var lis=document.querySelectorAll("li");
                     addText(name+": "+input.value);

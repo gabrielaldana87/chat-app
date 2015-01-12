@@ -34,25 +34,24 @@ server.on("connection", function(ws)
           usercontent["usersList"] = users;
           var usersList = JSON.stringify(usercontent);
           ws.send(usersList);
-          console.log(usersList);
-          console.log(users);
         }
 
       if(usercontent.type==="usermessage")
         {
           history.push(usercontent.name+": "+usercontent.lines);
-          console.log(usercontent.name+": "+usercontent.lines);
+          usercontent["type"] = "clientmsg";
+          usercontent["history"] = history;
+          var justMessage = JSON.stringify(usercontent);
 
-          for (i=0;i<clients.length;i++)
+           for (i=0;i<clients.length;i++)
               {
-                usercontent["type"] = "clientmsg";
-                 if(i!=y)
-                   {
+                //usercontent["type"] = "clientmsg";
+                  if(i!=y)
+                    {
                     //clients[i].send(usercontent.name+": "+usercontent.lines);//check this line
-                    ws.send(JSON.stringify(usercontent))
-                   }
-                }
-              console.log(usercontent);
+                    clients[i].send(justMessage);
+                    }
+              }
         };
       })
 
