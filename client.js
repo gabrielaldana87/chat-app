@@ -1,6 +1,5 @@
-
 var colorpos = ["first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth"];
-var ws = new WebSocket("ws://localhost:2000");//ws://gabriel.princesspeach.nyc:3000//ws://104.236.29.96:2000"
+var ws = new WebSocket("ws://104.236.29.96:2000");//ws://gabriel.princesspeach.nyc:3000//ws://104.236.29.96:2000"
 var ul = document.createElement("ul");
 var body = document.querySelector("body");
 var input = document.createElement("input");
@@ -55,15 +54,12 @@ ws.addEventListener("open",function(evt)
   usercontent["type"] = "openmessage";
   var messagecontent = JSON.stringify(usercontent);
   ws.send(messagecontent);
-  console.log(messagecontent);
 });
 
 
 ws.addEventListener("message",function(evt)
 {
   var usercontent = JSON.parse(evt.data);
-  console.log(usercontent);
-
   if(usercontent.type==="servermsg")
     {
       console.log(usercontent);
@@ -86,185 +82,175 @@ ws.addEventListener("message",function(evt)
         header.innerText="Hi "+name+". Welcome to SimpleChat!\nYou are # "+usercontent.position+" in line";
         div3.id="headerdiv";
         imgheader.id="headerimg";
-    }
+      }
 
-  if(usercontent["type"]==="clientmsg")
-    {
-      console.log("hello");
-      var history = [];
-      history.push(usercontent.history);
-      console.log(history);
-      addText(usercontent.name+": "+usercontent.lines);
-      // var ul = document.querySelector("ul");
-    //  for (i=0;i<history.length;i++)
-    //    {
-      // var li = document.createElement("li");
-      // ul.appendChild(li);
-      // li.innerText=usercontent.name+": "+usercontent.lines;
-    //    }
-      //var join = split.join('\n');
-
-
-       //var string = "";
-       //var string = usercontent.lines;
-       //var imglength = string.substring(string.length,string.length-3);
-      //
-       //var linkholder = string;
-      //var hyperlink = linkholder[1].charAt(0)+linkholder[1].charAt(1)+linkholder[1].charAt(2)+linkholder[1].charAt(3);
-      // linkholder.forEach(function(strings)
-      // {
-      //   var hyperlink = strings.charAt(0)+strings.charAt(1)+strings.charAt(2)+strings.charAt(3);
-      //   if(hyperlink==="http")
-      //     {
-      //       addLink(strings);
-      //     }
-      // })
-      //
-      //   if(imglength==="jpg" || imglength==="gif"|| imglength==="png" || imglength==="bmp")
-      //     {
-      //       var imagehold = string.split(": ");
-      //       var img = document.createElement("img");
-      //       div2.appendChild(img);
-      //       img.src=imagehold[1];
-      //       img.height="100";
-      //     }
-      //
-      //   else
-      //     {
-            // addText(usercontent.name+": "+usercontent.lines);
+      if(usercontent["type"]==="clientmsg")
+        {
+          var history = [];
+          history.push(usercontent.history);
+          addText(usercontent.name+": "+usercontent.lines);
+          // var ul = document.querySelector("ul");
+          //  for (i=0;i<history.length;i++)
+          //    {
+          // var li = document.createElement("li");
+          // ul.appendChild(li);
+          // li.innerText=usercontent.name+": "+usercontent.lines;
+          //    }
+          //var join = split.join('\n');
+          //var string = "";
+          //var string = usercontent.lines;
+          //var imglength = string.substring(string.length,string.length-3);
+          //
+          //var linkholder = string;
+          //var hyperlink = linkholder[1].charAt(0)+linkholder[1].charAt(1)+linkholder[1].charAt(2)+linkholder[1].charAt(3);
+          // linkholder.forEach(function(strings)
+          // {
+          //   var hyperlink = strings.charAt(0)+strings.charAt(1)+strings.charAt(2)+strings.charAt(3);
+          //   if(hyperlink==="http")
+          //     {
+          //       addLink(strings);
+          //     }
+          // })
+          //
+          //   if(imglength==="jpg" || imglength==="gif"|| imglength==="png" || imglength==="bmp")
+          //     {
+          //       var imagehold = string.split(": ");
+          //       var img = document.createElement("img");
+          //       div2.appendChild(img);
+          //       img.src=imagehold[1];
+          //       img.height="100";
+          //     }
+          //
+          //   else
+          //     {
+          // addText(usercontent.name+": "+usercontent.lines);
           //}
-    }
+        }
+      });
 
+      button.addEventListener("click",function(evt){
 
+        usercontent["lines"] = input.value;
+        var messagecontent = JSON.stringify(usercontent);
+        ws.send(messagecontent);
+        input.value="";
+        var lis=document.querySelectorAll("li");
+      })
 
+      var clear = function()
+      {input.value=""}
 
-});
+      input.addEventListener("keydown",function(evt){
+        if(evt.keyCode===13)
+          {
+            var wordfilter=input.value;
+            var filter = wordfilter.split(" ");
+            var commands=input.value;
+            var transform=commands.split("/ ");
+            var string = "";
+            var string = input.value;
+            var imglength = string.substring(string.length,string.length-3);
+            var wordbegin = string.charAt(0)+string.charAt(1)+string.charAt(2)+string.charAt(3);
 
-          button.addEventListener("click",function(evt){
+            filter.forEach(function(strings)
+            { if(strings==="fuck")
+            {
+              addText("that word is banned!");
+              clear();
+            }
 
-            usercontent["lines"] = input.value;
-            var messagecontent = JSON.stringify(usercontent);
-            ws.send(messagecontent);
-            input.value="";
-            var lis=document.querySelectorAll("li");
-          })
+            //  else if(wordbegin==="http")
+            //  {
+            //    addLink(strings);
+            //  }
 
-          var clear = function()
-          {input.value=""}
-
-          input.addEventListener("keydown",function(evt){
-            if(evt.keyCode===13)
+            else if(input.value!=="" && transform[0]!=="yell")
               {
+                usercontent["lines"] = wordfilter;
+                usercontent["type"] = "usermessage";
+                var messagecontent = JSON.stringify(usercontent);
+                ws.send(messagecontent);
+                var lis=document.querySelectorAll("li");
+                addText(name+": "+input.value);
+                //input.value="";
+                clear();
+              }
+            })
+            if(transform[0]==="yell")
+              {
+                usercontent["lines"]=transform[1].toUpperCase();
+                usercontent["type"] = "usermessage";
+                var messagecontent = JSON.stringify(usercontent);
+                ws.send(messagecontent);
+                addText(name+": "+transform[1].toUpperCase())
+                clear();
+              }
+              else if(transform[0]==="table flip")
+                {
+                  usercontent["lines"]="(╯°□°）╯︵ ┻━┻";
+                  usercontent["type"] = "usermessage";
+                  var messagecontent = JSON.stringify(usercontent);
+                  ws.send(messagecontent);
+                  addText(name+": "+"(╯°□°）╯︵ ┻━┻")
+                  clear();
+                }
+                else if(imglength==="jpg" || imglength==="gif"|| imglength==="png" || imglength==="bmp")
+                  {
+                    var img = document.createElement("img");
+                    div2.appendChild(img);
+                    img.src=string;
+                    img.height="100";
+                  }
+                }
+              })
+
+              input.addEventListener("keyup",function()
+              {
+                var lick = document.createElement("li");
+                var FirstLi = ul.firstChild;
                 var wordfilter=input.value;
                 var filter = wordfilter.split(" ");
+
                 var commands=input.value;
                 var transform=commands.split("/ ");
                 var string = "";
                 var string = input.value;
-                var imglength = string.substring(string.length,string.length-3);
                 var wordbegin = string.charAt(0)+string.charAt(1)+string.charAt(2)+string.charAt(3);
 
-                filter.forEach(function(strings)
-                { if(strings==="fuck")
-                {
-                  addText("that word is banned!");
-                  clear();
-                }
-
-                //  else if(wordbegin==="http")
-                //  {
-                //    addLink(strings);
-                //  }
-
-                else if(input.value!=="" && transform[0]!=="yell")
+                for(i=0;i<=filter.length;i++)
                   {
-                    usercontent["lines"] = wordfilter;
-                    usercontent["type"] = "usermessage";
-                    var messagecontent = JSON.stringify(usercontent);
-                    ws.send(messagecontent);
-                    var lis=document.querySelectorAll("li");
-                    addText(name+": "+input.value);
-                    //input.value="";
-                    clear();
-                  }
-                })
-                if(transform[0]==="yell")
-                  {
-                    usercontent["lines"]=transform[1].toUpperCase();
-                    usercontent["type"] = "usermessage";
-                    var messagecontent = JSON.stringify(usercontent);
-                    console.log(messagecontent);
-                    ws.send(messagecontent);
-                    addText(name+": "+transform[1].toUpperCase())
-                    clear();
-                  }
-                  else if(transform[0]==="table flip")
-                    {
-                      usercontent["lines"]="(╯°□°）╯︵ ┻━┻";
-                      usercontent["type"] = "usermessage";
-                      var messagecontent = JSON.stringify(usercontent);
-                      ws.send(messagecontent);
-                      console.log(messagecontent);
-                      addText(name+": "+"(╯°□°）╯︵ ┻━┻")
-                      clear();
-                    }
-                    else if(imglength==="jpg" || imglength==="gif"|| imglength==="png" || imglength==="bmp")
+                    if(filter[i]==="fuck"||filter[i]==="shit"||filter[i]==="fag"||filter[i]==="faggot"||filter[i]==="bitch")
                       {
-                        var img = document.createElement("img");
-                        div2.appendChild(img);
-                        img.src=string;
-                        img.height="100";
+                        FirstLi.innerText="That word is banned!";
+                        clear();
                       }
-                    }
-                  })
 
-                  input.addEventListener("keyup",function()
-                  {
-                    var lick = document.createElement("li");
-                    var FirstLi = ul.firstChild;
-                    var wordfilter=input.value;
-                    var filter = wordfilter.split(" ");
-
-                    var commands=input.value;
-                    var transform=commands.split("/ ");
-                    var string = "";
-                    var string = input.value;
-                    var wordbegin = string.charAt(0)+string.charAt(1)+string.charAt(2)+string.charAt(3);
-
-                    for(i=0;i<=filter.length;i++)
-                      {
-                        if(filter[i]==="fuck"||filter[i]==="shit"||filter[i]==="fag"||filter[i]==="faggot"||filter[i]==="bitch")
+                      else if(transform[0]==="yell")
+                        {
+                          FirstLi.innerText=name+": "+transform[1].toUpperCase();
+                          FirstLi.id="test";
+                        }
+                        else if(transform[0]==="table flip")
                           {
-                            FirstLi.innerText="That word is banned!";
-                            clear();
+                            var pre = document.createElement("pre");
+                            FirstLi.appendChild(pre);
+                            FirstLi.innerText=name+": "+"(╯°□°）╯︵ ┻━┻";
+                            FirstLi.id="test";
                           }
-
-                          else if(transform[0]==="yell")
+                          else if(input.value!=="" && transform[0]!=="yell" && transform[0]!=="table flip")
                             {
-                              FirstLi.innerText=name+": "+transform[1].toUpperCase();
+                              FirstLi.innerText=name+": "+input.value;
                               FirstLi.id="test";
                             }
-                            else if(transform[0]==="table flip")
+                            else if(wordbegin==="http")
                               {
-                                var pre = document.createElement("pre");
-                                FirstLi.appendChild(pre);
-                                FirstLi.innerText=name+": "+"(╯°□°）╯︵ ┻━┻";
-                                FirstLi.id="test";
-                              }
-                              else if(input.value!=="" && transform[0]!=="yell" && transform[0]!=="table flip")
+                                input.addEventListener("keydown",function(evt)
                                 {
-                                  FirstLi.innerText=name+": "+input.value;
-                                  FirstLi.id="test";
-                                }
-                                else if(wordbegin==="http")
-                                  {
-                                    input.addEventListener("keydown",function(evt)
+                                  if(evt.keyCode===13)
                                     {
-                                      if(evt.keyCode===13)
-                                        {
-                                          addLink(strings);
-                                        }
-                                      })
+                                      addLink(strings);
                                     }
-                                  }
-                                })
+                                  })
+                                }
+                              }
+                            })
